@@ -1,5 +1,7 @@
-# env
+# pycharm
+.idea/
 
+# env
 env/
 
 # Byte-compiled / optimized / DLL files
