@@ -1,12 +1,9 @@
-from dataclasses import dataclass
-
 import json
+from dataclasses import dataclass
 from urllib import request, parse
 from urllib.error import URLError, HTTPError
 
 API = 'https://geocoder-5-ign.larioja.org/v1/'
-
-API_bad = 'https://other-bad-url/'
 
 
 @dataclass
@@ -90,6 +87,10 @@ class GeocoderSCN:
             self.messages = e.reason
 
     def get_list(self):
+        """
+        Devuelve una lista con lonfitud, latitud, etiquea y fuente de la geocodifiación
+        @rtype: object
+        """
         list = []
         if self.feature_count > 0:
             features = self.api_data['features']
@@ -105,14 +106,3 @@ class GeocoderSCN:
                 list.append(dic)
                 i += 1
         return list
-
-
-if __name__ == '__main__':
-    myGeocoderSCN = GeocoderSCN('Plaza de españa 1')
-    myGeocoderSCN.search()
-
-    print(myGeocoderSCN.get_list())
-
-    # myGeocoderSCN_reverse = GeocoderSCN('40.416645598,-3.70381211,0')
-    # myGeocoderSCN_reverse.reverse()
-    # print(myGeocoderSCN_reverse)
